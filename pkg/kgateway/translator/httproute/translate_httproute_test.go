@@ -188,16 +188,15 @@ var _ = Describe("GatewayHttpRouteTranslator", func() {
 
 		When("referencing a non-existent backing service", func() {
 			BeforeEach(func() {
-				// Setup the backendObjIR
+				// Setup the backendObjIR with no backing object (service doesn't exist)
 				up = &ir.BackendObjectIR{
 					ObjectSource: ir.ObjectSource{
-						Namespace: backingSvc.Namespace,
-						Name:      backingSvc.Name,
+						Namespace: "bar",
+						Name:      "foo",
 						Kind:      "Service",
 						Group:     "",
 					},
 					Port: 8080,
-					Obj:  backingSvc,
 				}
 				// Setup the route rules
 				route.Spec.Rules = []gwv1.HTTPRouteRule{
